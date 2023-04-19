@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Weight Prediction</title>
+  <title>sentiment analysis</title>
   <meta charset="UTF-8" />
   <style>
     body {
@@ -17,13 +17,27 @@
     <h1>Hi Behrooz!</h1>
   </header>
   <main>
-    <p><strong>The Web App has been launched.</strong></p>
-    <form action="{{ url_for('Prediction')}}" method="post">
+    <p><strong>The sentiment analysis app has been launched.</strong></p>
+    <hr class="rounded">
+    <hr class="dotted">
+
+    <form action="{{ url_for('Prediction1')}}" method="post">
       <label for="height">Please enter a sentence and then receive an opinion mining based on natural language processing technique:</label><br />
-      <input type="text" id="height" name="height" placeholder="Height" /><br />
+      <input type="text" id="height" name="input1" placeholder="" /><br />
       <button type="submit">Submit</button>
     </form>
     <p>{{result}}</p>
+    <hr class="dotted">
+
+    <form action="{{ url_for('Prediction2')}}" method="post">
+      <label for="height2">Please enter a paragraph and then receive a summary:</label><br />
+      <input type="text" id="height2" name="input2" placeholder="" /><br />
+      <button type="submit">Submit</button>
+    </form>
+    <p>{{result}}</p>
+    <hr class="solid"> 
+
+
   </main>
 </body>
 </html>
