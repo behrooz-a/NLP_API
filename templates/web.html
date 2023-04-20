@@ -9,7 +9,53 @@
     }
   </style>
   <script>
+    const checkSentenceResponse = async () => {
+      const response_destination = document.querySelector("#sentence_result");
 
+      fetch('/status.json').then(response => {
+        return response.json();
+      }).then(response_json => {
+        const results = [];
+        for (const model_response of response_json) {
+          const query = document.createElement("div");
+          query.classList.add("user_message");
+          query.innerText = model_response.user_message;
+          results.push(query);
+
+          const response = document.createElement("div");
+          query.classList.add("model_response");
+          response.innerText = model_response.model_response;
+          results.push(response);
+        }
+        for (const result of results) {
+          response_destination.appendChild(result);
+        }
+      });
+
+    }
+    const checkParagraphResponse = async () => {
+      const response_destination = document.querySelector("#paragraph_result");
+
+      fetch('/status.json').then(response => {
+        return response.json();
+      }).then(response_json => {
+        const results = [];
+        for (const model_response of response_json) {
+          const query = document.createElement("div");
+          query.classList.add("user_message");
+          query.innerText = model_response.user_message;
+          results.push(query);
+
+          const response = document.createElement("div");
+          query.classList.add("model_response");
+          response.innerText = model_response.model_response;
+          results.push(response);
+        }
+        for (const result of results) {
+          response_destination.appendChild(result);
+        }
+      });
+    }
   </script>
 </head>
 <body>
@@ -26,7 +72,10 @@
       <input type="text" id="height" name="input1" placeholder="" /><br />
       <button type="submit">Submit</button>
     </form>
-    <p>{{result}}</p>
+    <button id="check_sentence_response" onClick="checkSentenceResponse()">Check Sentence Response</button>
+
+    <div id="sentence_result">{{result}}</div>
+    
     <hr class="dotted">
 
     <form action="{{ url_for('Prediction2')}}" method="post">
@@ -34,10 +83,13 @@
       <input type="text" id="height2" name="input2" placeholder="" /><br />
       <button type="submit">Submit</button>
     </form>
-    <p>{{result}}</p>
+
+    <button id="check_paragraph_response" onClick="checkParagraphResponse()">Check Paragraph Response</button>
+
+    <div id="paragraph_result">{{result}}</div>
     <hr class="solid"> 
 
-
+    
   </main>
 </body>
 </html>
